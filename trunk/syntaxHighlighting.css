@@ -1,0 +1,161 @@
+#script, #output {
+	width: 99%;
+	height: 275px;
+	padding: 5px;
+	overflow-y: auto;
+	margin-bottom: 20px;
+	border: 1px solid #000000;
+}
+
+#contentBody pre {
+	margin: 0;
+	overflow-y: visible;
+	line-height: 15px;
+}
+
+#contentBody pre .keyword1 {
+	color: red;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#contentBody pre .keyword2 {
+	color: blue;
+}
+
+#contentBody pre .GECKFunction {
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#contentBody pre .ScriptExtenderFunction {
+	color: black;
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: underline;
+}
+
+.OptionalParam {
+	font-style: italic;
+}
+
+#contentBody pre .comment {
+	color: green;
+	font-style: italic;
+}
+
+#contentBody pre .string {
+	color: gray;
+	font-style: italic;
+}
+
+#contentBody pre ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#contentBody pre ul li {
+	margin-left: 15px;
+	padding-left: 5px;
+}
+
+#contentBody pre ul li, .functionInfoWrapper .functionInfo {
+	width: 660px;
+	background-image: none;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap !important;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
+
+#contentBody pre ul li.error:before {
+	content: "Error:   ";
+	color: red;
+}
+
+#contentBody pre ul li.warning:before {
+	content: "Warning: ";
+	color: orange;
+}
+
+/**/
+
+.outputLine span.icon {
+	float: left;
+	background: no-repeat 5px center;
+	padding: 0 10px 0 5px;
+	cursor: default;
+	position: relative;
+	z-index: 1;
+}
+
+.outputLine span.errorIcon {
+	background-image: url('http://www.cipscis.com/images/errorIcon.png');
+}
+
+.outputLine span.warningIcon {
+	background-image: url('http://www.cipscis.com/images/warningIcon.png');
+}
+
+.outputLine span.errorIcon.warningIcon {
+	background-image: url('http://www.cipscis.com/images/errorWarningIcon.png');
+}
+
+.hideErrors span.icon {
+	display: none;
+}
+
+#contentBody span.icon:hover {
+	text-decoration: none;
+}
+
+span.icon:before {
+	content: " ";
+}
+
+ul.errorLine {
+	display: none;
+	position: absolute;
+	top: 15px;
+	left: 0;
+	z-index: 2;
+}
+
+#contentBody ul.errorLine li.error, #contentBody ul.errorLine li.error {
+	background: #ffaaaa;
+}
+
+#contentBody ul.errorLine li.warning, #contentBody ul.errorLine li.warning {
+	background: #eeeeaa;
+}
+
+.functionInfo {
+	display: none;
+	position: absolute;
+	top: 15px;
+	left: 0;
+	z-index: 2;
+
+	background: #ddd;
+
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+}
+
+.outputLine {
+	position: relative;
+}
+
+.hideErrors span.outputLine {
+	margin-left: 23px;
+}
+
+.outputLine span {
+	padding: 0;
+	margin: 0;
+	width: auto;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0055)http://www.cipscis.com/fallout/utilities/validator.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="http://www.cipscis.com/css/default.css">
+<link rel="stylesheet" type="text/css" href="http://www.cipscis.com/css/blueTheme.css">
+<link rel="stylesheet" type="text/css" href="syntaxHighlighting.css">
+<link rel="icon" type="image/png" href="http://www.cipscis.com/images/favicon.png">
+<title>Cipscis - Script Validator</title>
+
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="author" content="Mark Hanna">
+
+<script type="text/javascript" src="dictionary.js"></script>
+<script type="text/javascript" src="validateScript.js"></script>
+<script src="http://www.cipscis.com/javascript/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+function hideErrors() {$(".icon").html(""); $(".icon").css("background-image", "none");}
+function selectInput() {
+	if (document.selection) { //IE
+		document.selection.empty();
+		var range = document.body.createTextRange();
+		range.moveToElementText(document.getElementById("output"));
+		range.select();
+	} else if (window.getSelection) {
+		var range = document.createRange();
+		range.selectNode(document.getElementById("output"));
+		window.getSelection().addRange(range);
+	}
+}
+</script>
+
+<body onload="validateScript(document.getElementById(&#39;script&#39;), document.getElementById(&#39;output&#39;), document.getElementById(&#39;extraData&#39;))"><div id="tyntPrint"></div>
+
+<div id="master">
+	<a name="top"></a>
+	<div id="masterTop">
+		<div id="masterBottom">
+
+			<!-- header -->
+			<div id="header">
+				<div id="homeLink">
+					<a href="http://www.cipscis.com/"></a>
+				</div>
+				<div id="banner">
+
+				</div>
+				<div id="mainNav">
+					<ul>
+					    
+						<li>
+						
+							<a href="http://www.cipscis.com/"><span class="middle firstItem"><span class="leftSide"><span class="rightSide"><span class="padding">Home</span></span></span></span></a>
+						</li>
+						
+						<li class="selected">
+						
+							<a href="http://www.cipscis.com/fallout/"><span class="middle"><span class="leftSide"><span class="rightSide"><span class="padding">Fallout</span></span></span></span></a>
+						</li>
+						
+						<li>
+						
+							<a href="http://www.cipscis.com/about/"><span class="middle lastItem"><span class="leftSide"><span class="rightSide"><span class="padding">About Me</span></span></span></span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /header -->
+
+			<br style="clear: both;">			<!-- sideNav -->
+			<div id="sideNav">
+				
+				<ul>
+					
+					<li>
+					
+						<a href="http://www.cipscis.com/fallout/tutorials/"><span class="background">Tutorials</span></a>
+						
+					</li>
+					
+					<li class="selected">
+					
+						<a href="./Cipscis - Script Validator_files/Cipscis - Script Validator.htm"><span class="background">Utilities</span></a>
+						
+						<ul>
+							
+							<li class="selected">
+							
+								<a href="./Cipscis - Script Validator_files/Cipscis - Script Validator.htm"><span class="background">Script Validator</span></a>
+							</li>
+						</ul>
+						
+					</li>
+					
+				</ul>
+				
+			</div>
+			<!-- /sideNav -->
+
+			<div id="content">
+				<div id="contentBody">
+
+					<p id="date">18<sup>th</sup> July 2010</p>
+					<h1 id="pageTitle">Script Validator</h1>
+
+					<p>This utility allows you to quickly indent your scripts while simultaneously checking it for several errors, many of which are not picked up by the <acronym title="Garden of Eden Creation Kit">GECK</acronym>'s compiler.  To use the validator, simply paste or type the code that you wish to validate into the top text box on this page.</p>
+					<p>If you find any bugs, please <a href="http://www.cipscis.com/about/contact/">contact me</a> so I can fix them.</p>
+
+					<form name="nameType">
+						<label>Alias function names and keywords?</label><br>
+						<input type="radio" name="nameType" value="noChange" id="nameType-noChange" checked="checked" onchange="validateScript(document.getElementById(&#39;script&#39;), document.getElementById(&#39;output&#39;), document.getElementById(&#39;extraData&#39;));"><label for="nameType-noChange">No change</label>
+						<input type="radio" name="nameType" value="short" id="nameType-short" onchange="validateScript(document.getElementById(&#39;script&#39;), document.getElementById(&#39;output&#39;), document.getElementById(&#39;extraData&#39;));"><label for="nameType-short">Short</label>
+						<input type="radio" name="nameType" value="long" id="nameType-long" onchange="validateScript(document.getElementById(&#39;script&#39;), document.getElementById(&#39;output&#39;), document.getElementById(&#39;extraData&#39;));"><label for="nameType-long">Long</label>
+
+						<br>
+						<input type="checkbox" name="fixCaps" value="fixCaps" id="fixCaps" onchange="validateScript(document.getElementById(&#39;script&#39;), document.getElementById(&#39;output&#39;), document.getElementById(&#39;extraData&#39;));"><label for="fixCaps">Standardise Capitalisation</label>
+					</form> 
+
+					<textarea id="script" onkeyup="validateScript(document.getElementById(&#39;script&#39;), document.getElementById(&#39;output&#39;), document.getElementById(&#39;extraData&#39;));"></textarea>
+					<div id="output"><pre><span id="outputLine1" class="outputLine"><a class="icon"></a></span><br></pre></div>
+					<br style="clear: both;">
+
+					<input type="button" value="Hide Errors and Warnings" onclick="hideErrors();">
+					<input type="button" value="Show Errors and Warnings" onclick="validateScript(document.getElementById(&#39;script&#39;), document.getElementById(&#39;output&#39;), document.getElementById(&#39;extraData&#39;));">
+					<input type="button" value="Select All" onclick="selectInput()">
+
+					<p id="extraData" style="clear: both;">
+
+Script may be of type result or quest or object or effect.</p>
+
+				</div>
+			</div>
+
+			<!-- /content -->
+
+			<br style="clear: both;">
+
+			<!-- footer -->
+
+			<div id="footer">
+				<ul>
+					<li class="lastItem">
+						<a href="http://www.cipscis.com/about/contact/">Contact Me</a>
+					</li>
+					<li>
+						<a href="#top">Back to top</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- /footer -->
+		</div>
+	</div>
+</div>
+</body>
+</html>

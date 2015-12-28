@@ -1,0 +1,49 @@
+#summary Syntax used for function definition by the validator's dictionary
+
+= Introduction =
+The dictionary defines script functions with the scriptFunction object, which takes the following parameters:
+  * returnType
+  * callingConvention
+  * SEVersion
+  * params
+  * names
+  * notes
+
+This page details how to create such objects.
+
+Note that, for functions with aliases, only the longer alias is defined with this method.  The shorter alias is defined with the alias() function (see [DefiningFunctions#Aliases Aliases]).
+
+= Arguments =
+== returnType ==
+Expects a string detailing the type of data returned by the function.  For functions that return no data "void" should be used.
+
+== callingConvention ==
+Accepted values:
+  * "R" - Called on a reference e.g. [http://geck.bethsoft.com/index.php/GetDistance GetDistance]
+  * "S" - Reference function that should always be called implicitly e.g. [http://geck.bethsoft.com/index.php/GetContainer GetContainer]
+  * "E" - Called on reference or on base form specified as final parameter - script extender functions only e.g. [http://fose.silverlock.org/fose_command_doc.html#IsClonedForm IsClonedForm]
+  * "B" - Not called on a reference e.g. [http://geck.bethsoft.com/index.php/GetSecondsPassed GetSecondsPassed]
+  * "D" - The function is deprecated and should not be called in any way e.g. IsHorseStolen
+
+== SEVersion ==
+The required version of the relevant script extender.  Use 0 for functions that don't require a script extender, otherwise use (for example) 1.22 for 1.2 beta 2
+
+== params ==
+An array of [DefiningFunctionParameters scriptFunctionParam] objects defining the function's parameters.  If the function has no parameters, use an empty array.
+
+== names ==
+An object with the following properties:
+  * docLink - The URL of the function's online documentation, if applicable
+  * name - The function's name
+  * shortName - The name of the function's short alias, if applicable
+  * longName - The name of the function's long alias, if applicable
+The _name_, _shortName_, and _longName_ properties should all be capitalised in [http://en.wikipedia.org/wiki/CamelCase CamelCase]
+
+== notes ==
+An array of [DefiningFunctionNotes scriptFunctionNote] objects defining any errors or warnings specific to this function.  Only needs to be included in relevant function definitions.
+
+= Aliases =
+If a function has a shorter alias, define the longer alias as normal (making sure to include the _shortName_ and _longName_ properties of the scriptFunction object's _name_ argument), then use the alias() function to define the shorter alias based on the longer one.  For example, after defining [http://geck.bethsoft.com/index.php/GetActorValue GetActorValue] normally, its alias _GetAV_ would be defined like this:
+{{{
+dictionary.functions["getav"] = alias(dictionary.functions["getactorvalue]);
+}}}

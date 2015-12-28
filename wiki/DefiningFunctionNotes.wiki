@@ -1,0 +1,32 @@
+#summary Syntax used for warnings or errors specific to certain functions
+
+= Introduction =
+If a function requires special warnings or errors, they can be defined by passing an array of scriptFunctionNote objects as the _notes_ argument of the [DefiningFunctions scriptFunction] object.
+
+The arguments expected for a scriptFunctionNote are:
+  * condition
+  * content
+  * level
+
+= Arguments =
+== condition ==
+An anonymous function that takes an array containing the calling reference (possibly null) and the function's parameters, and returns a boolean value.  The note's content will be displayed if this function returns true.
+
+For example, [http://geck.bethsoft.com/index.php/IsActorDetected IsActorDetected] will always return 0 when called on the player, so the following scriptFunctionNote is used as part of its definition:
+{{{
+scriptFunctionNote(
+function(functionCall) {
+	if (0 in functionCall) {
+		return functionCall[0].toLowerCase in {player: 1, playerref: 1}
+	} else
+		return false;
+},
+"\"IsActorDetected\" will always return 0 when called on the player",
+1)
+}}}
+
+== content ==
+The string to be displayed if the condition function returns _true_.
+
+== level ==
+Specifies what type of message should be displayed.  Use 0 for warnings, and 1 for errors.

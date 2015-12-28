@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0055)http://www.cipscis.com/fallout/utilities/validator.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="http://www.cipscis.com/css/default.css">
+<link rel="stylesheet" type="text/css" href="http://www.cipscis.com/css/blueTheme.css">-->
+<link rel="stylesheet" type="text/css" href="syntaxHighlighting.css">
+<link rel="icon" type="image/png" href="http://www.cipscis.com/images/favicon.png">
+<title>Cipscis - Script Validator</title>
+
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="author" content="Mark Hanna">
+
+<script src="http://www.cipscis.com/javascript/jquery-1.4.2.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="lib.js"></script>
+<script type="text/javascript" src="dictionary.js"></script>
+<script type="text/javascript" src="highlight.js"></script>
+<script type="text/javascript" src="validateScript.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+	$('#nameType-noChange, #nameType-short, #nameType-long, #fixCaps').change(function () {
+		validateScript($('#script'), $('#output'), $('#extraData'));
+	});
+
+
+
+	$('#game-fallout3').change(function () {
+		dictionary.blocktypes = dictionary.fallout3blocktypes;
+		dictionary.values = dictionary.fallout3values;
+		dictionary.functions = $.extend({}, dictionary.fallout3functions, dictionary.fosefunctions);
+		validateScript($('#script'), $('#output'), $('#extraData'));
+	})
+
+	$('#game-newvegas').change(function () {
+		dictionary.blocktypes = dictionary.newvegasblocktypes;
+		dictionary.values = dictionary.newvegasvalues;
+		dictionary.functions = $.extend({}, dictionary.newvegasfunctions, dictionary.nvsefunctions);
+		validateScript($('#script'), $('#output'), $('#extraData'));
+	});
+
+	$('#script').keyup(function () {
+		validateScript($('#script'), $('#output'), $('#extraData'));
+	});
+
+	$('#toggleErrors').click(function () {
+		$('#output').toggleClass('hideErrors');
+	});
+
+	$('#selectAll').click(function () {
+		selectElement($('#output pre')[0]);
+	});
+
+	validateScript($('#script'), $('#output'), $('#extraData'));
+
+});
+</script>
+
+<body>
+
+<div id="master">
+	<a name="top"></a>
+	<div id="masterTop">
+		<div id="masterBottom">
+
+			<!-- header -->
+
+			<div id="header">
+				<div id="homeLink">
+					<a href="http://www.cipscis.com/"></a>
+				</div>
+				<div id="banner">
+				</div>
+				<div id="mainNav">
+					<ul>
+						<li>
+							<a href="http://www.cipscis.com/"><span class="middle firstItem"><span class="leftSide"><span class="rightSide"><span class="padding">Home</span></span></span></span></a>
+						</li>
+						<li class="selected">
+							<a href="http://www.cipscis.com/fallout/"><span class="middle"><span class="leftSide"><span class="rightSide"><span class="padding">Fallout</span></span></span></span></a>
+						</li>
+						<li>
+							<a href="http://www.cipscis.com/about/"><span class="middle lastItem"><span class="leftSide"><span class="rightSide"><span class="padding">About Me</span></span></span></span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- /header -->
+
+			<br style="clear: both;">
+
+			<!-- sideNav -->
+
+			<div id="sideNav">
+				<ul>
+					<li>
+						<a href="http://www.cipscis.com/fallout/tutorials/"><span class="background">Tutorials</span></a>
+					</li>
+					<li class="selected">
+						<a href="#"><span class="background">Utilities</span></a>
+						<ul>
+							<li class="selected">
+								<a href="#"><span class="background">Script Validator</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<!-- /sideNav -->
+
+			<div id="content">
+				<div id="contentBody">
+
+					<p id="date">18<sup>th</sup> July 2010</p>
+					<h1 id="pageTitle">Script Validator</h1>
+
+					<p>This utility allows you to quickly indent your scripts while simultaneously checking it for several errors, many of which are not picked up by the <acronym title="Garden of Eden Creation Kit">GECK</acronym>'s compiler.  To use the validator, simply paste or type the code that you wish to validate into the top text box on this page.</p>
+					<p>If you find a bug, please <a href="http://code.google.com/p/fallout-script-validator/issues/entry">report it</a> so I can fix it.</p>
+
+					<form id="validatorOptions">
+						<div style="float: left;">
+							<label>Alias function names and keywords?</label><br />
+							<input type="radio" name="nameType" value="noChange" id="nameType-noChange" checked="checked" /><label for="nameType-noChange">No change</label>
+							<input type="radio" name="nameType" value="short" id="nameType-short" /><label for="nameType-short">Short</label>
+							<input type="radio" name="nameType" value="long" id="nameType-long" /><label for="nameType-long">Long</label>
+
+							<br />
+							<input type="checkbox" name="fixCaps" value="fixCaps" id="fixCaps" /><label for="fixCaps">Standardise capitalisation</label>
+						</div>
+						<div style="float: right;">
+							<label>Is this script for Fallout 3 or Fallout: New Vegas?</label><br />
+							<input type="radio" name="game" value="fallout3" id="game-fallout3" checked="checked" /><label for="game-fallout3">Fallout 3</label>
+							<input type="radio" name="game" value="fallout3" id="game-newvegas" /><label for="game-newvegas">Fallout: New Vegas</label>
+
+							<br />
+							<input type="checkbox" name="tooltips" value="tooltips" id="tooltips" checked="checked" /><label for="tooltips">Show function tooltips</label>
+						</div>
+						<br style="clear:both;" />
+					</form>
+
+					<textarea id="script"></textarea>
+					<div id="output"><pre></pre></div>
+					<br style="clear: both;" />
+
+					<input type="button" value="Toggle Errors and Warnings" id="toggleErrors" />
+					<input type="button" value="Select All" id="selectAll" />
+
+					<p id="extraData" style="clear: both;"></p>
+
+				</div>
+			</div>
+
+			<!-- /content -->
+
+			<br style="clear: both;">
+
+			<!-- footer -->
+
+			<div id="footer">
+				<ul>
+					<li class="lastItem">
+						<a href="http://www.cipscis.com/about/contact/">Contact Me</a>
+					</li>
+					<li>
+						<a href="#top">Back to top</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- /footer -->
+		</div>
+	</div>
+</div>
+</body>
+</html>

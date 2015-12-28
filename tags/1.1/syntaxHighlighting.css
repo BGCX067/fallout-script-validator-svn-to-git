@@ -1,0 +1,135 @@
+#script, #output {
+	width: 99%;
+	height: 400px;
+	padding: 5px;
+	overflow-y: auto;
+	margin-bottom: 20px;
+	border: 1px solid #000000;
+}
+
+#contentBody pre {
+	margin: 0;
+	overflow-y: visible;
+}
+
+#contentBody pre .keyword1 {
+	color: red;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#contentBody pre .keyword2 {
+	color: blue;
+}
+
+#contentBody pre .GECKFunction {
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#contentBody pre .ScriptExtenderFunction {
+	color: black;
+	font-weight: bold;
+	font-style: italic;
+	text-decoration: underline;
+}
+
+#contentBody pre .comment {
+	color: green;
+	font-style: italic;
+}
+
+#contentBody pre .string {
+	color: gray;
+	font-style: italic;
+}
+
+#contentBody pre ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#contentBody pre ul li {
+	margin-left: 15px;
+	padding-left: 5px;
+	width: 660px;
+	background-image: none;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap !important;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
+
+#contentBody pre ul li.error:before {
+	content: "Error:   ";
+	color: red;
+}
+
+#contentBody pre ul li.warning:before {
+	content: "Warning: ";
+	color: orange;
+}
+
+/**/
+
+a.icon {
+	float: left;
+	background: no-repeat 5px center;
+	padding: 0 10px 0 5px;
+	cursor: default;
+	position: relative;
+	z-index: 1;
+}
+
+a.errorIcon {
+	background-image: url('http://www.cipscis.com/images/errorIcon.png');
+}
+
+a.warningIcon {
+	background-image: url('http://www.cipscis.com/images/warningIcon.png');
+}
+
+a.errorIcon.warningIcon {
+	background-image: url('http://www.cipscis.com/images/errorWarningIcon.png');
+}
+
+.hideErrors a.icon {
+	background-image: none !important;
+}
+
+#contentBody a.icon:hover {
+	text-decoration: none;
+}
+
+a.icon:before {
+	content: " ";
+}
+
+a ul.errorLine {
+	display: none;
+}
+
+ul.errorLine {
+	display: block;
+	position: absolute;
+	top: 15px;
+	left: 0;
+	z-index: 2;
+}
+
+#contentBody ul.errorLine li.error, #contentBody ul.errorLine li.error {
+	background: #ffaaaa;
+}
+
+#contentBody ul.errorLine li.warning, #contentBody ul.errorLine li.warning {
+	background: #eeeeaa;
+}
+
+.outputLine span {
+	padding: 0;
+	margin: 0;
+	width: auto;
+}

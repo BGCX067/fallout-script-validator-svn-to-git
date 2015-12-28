@@ -1,0 +1,45 @@
+#summary Syntax used to define function parameters
+
+= Introduction =
+When defining functions with the [DefiningFunctions scriptFunction] object, parameters are defined by an array of scriptFunctionParam objects, which take the following parameters:
+  * dataType
+  * name
+  * optional
+  * values
+  * deprecated
+
+This page details how to create such objects.
+
+= Arguments =
+== dataType ==
+The type of data required for the parameter.  The following values are accepted:
+  * "ref" - FormID
+  * "int" - Integer
+  * "float" - Floating point value
+  * "string" - String literal
+  * "void" - Accepts any value
+
+Not all parameter types currently have a defined dataType.
+
+== name ==
+The name of the parameter.
+
+== optional ==
+A boolean value representing whether or not the parameter may be omitted from a function call.  False by default.
+
+== values ==
+If the parameter *must* be one of a set of possible values, this argument defines those values.
+
+An object should be defined with properties named after the accepted values in lower case, with values of the same names in CamelCase.  For example, the following is used for functions like [http://geck.bethsoft.com/index.php/GetPos GetPos], which require an axis to be specified:
+{{{
+dictionary.values.axes = {
+	x: "X",
+	y: "Y",
+	z: "Z"
+};
+}}}
+
+If the function is deprecated, use _false_ instead.
+
+== deprecated ==
+A boolean value representing whether or not the parameter should be considered deprecated.  False by default.
